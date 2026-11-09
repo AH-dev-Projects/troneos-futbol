@@ -18,9 +18,7 @@
    ========================================================================== */
 
 const AdminAuth = (function () {
-  // SHA-256 del código actual. El valor de fábrica corresponde a
-  // "torneo5-2026" — CÁMBIALO antes de publicar el sitio (ver generate-code.html).
-  const CODE_HASH = "7d6d4ebfa2e606b11371bf8676b00570ed64e48ab4847da8e71f7426d4e139c3";
+  const CODE_HASH = "18ec717fde553725b8ed63da122619d4040be0f9ad264e58060a5b0c5e5c4bc3";
 
   const SESSION_KEY = "torneo5_admin_unlocked";
 
