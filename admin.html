@@ -9,6 +9,27 @@
 </head>
 <body>
 
+  <!-- Candado de acceso (filtro simple, no es un login real — ver js/admin-auth.js) -->
+  <div class="admin-gate" id="admin-gate">
+    <div class="admin-gate-card">
+      <div class="brand-badge">T5</div>
+      <h1>Acceso administrativo</h1>
+      <p class="note">Ingresa el código de administración para editar el torneo.</p>
+      <input type="password" id="gate-code" placeholder="Código de acceso" autocomplete="off" />
+      <button class="btn lime" id="gate-submit">Entrar</button>
+      <p id="gate-error" class="hidden" style="color:var(--red);font-size:12.5px;margin-top:8px;">Código incorrecto.</p>
+      <div class="warn">
+        Este código es solo un filtro para visitas casuales: no reemplaza un inicio de
+        sesión real. La protección de lo que se publica sigue siendo el control de
+        quién tiene permiso de escritura en el repositorio de GitHub.
+        <br /><br />
+        ¿Necesitas cambiar el código? Abre <a href="generate-code.html">generate-code.html</a>.
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-app" class="hidden">
+
   <div class="export-bar">
     <span id="draft-status">Cargando datos…</span>
     <div class="toolbar">
@@ -28,6 +49,7 @@
       </div>
       <div class="topbar-actions">
         <a href="index.html" class="btn-ghost">← Ver sitio público</a>
+        <button class="btn-ghost" id="btn-lock-panel" title="Bloquear panel">🔒 Bloquear</button>
       </div>
     </div>
   </header>
@@ -212,12 +234,15 @@
     </div>
   </div>
 
+  </div><!-- /#admin-app -->
+
   <script src="js/data.js"></script>
   <script src="js/standings.js"></script>
   <script src="js/bracket.js"></script>
   <script src="js/teams.js"></script>
   <script src="js/matches.js"></script>
   <script src="js/groups.js"></script>
+  <script src="js/admin-auth.js"></script>
   <script src="js/admin.js"></script>
 </body>
 </html>

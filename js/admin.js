@@ -890,5 +890,7 @@
     container.querySelectorAll(".bracket-match").forEach((card) => card.addEventListener("click", () => openMatchModal(card.dataset.matchId)));
   }
 
-  document.addEventListener("DOMContentLoaded", init);
+  // El panel solo se inicializa después de pasar el candado de acceso
+  // (admin-auth.js), que llama a esta función una vez desbloqueado.
+  document.addEventListener("DOMContentLoaded", () => AdminAuth.init(init));
 })();

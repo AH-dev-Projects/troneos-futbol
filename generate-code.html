@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Generar código de acceso — Torneo 5</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div style="max-width:480px;margin:50px auto;padding:0 20px;">
+    <div class="card">
+      <h2 class="mt-0">Generar código de acceso del panel</h2>
+      <p class="muted" style="font-size:13.5px;line-height:1.5;">
+        Escribe el nuevo código que quieras usar para entrar a <code>admin.html</code>.
+        Esta página no envía el código a ningún lado: el cálculo ocurre en tu propio
+        navegador, usando la API de criptografía integrada del navegador (Web Crypto).
+      </p>
+      <div class="field-group">
+        <label>Nuevo código</label>
+        <input type="text" id="code-input" placeholder="Escribe el código que usarás..." style="width:100%;" />
+      </div>
+      <button class="btn lime" id="gen-btn">Generar</button>
+
+      <div id="result" class="hidden" style="margin-top:18px;">
+        <p class="muted" style="font-size:12.5px;">
+          Copia esta línea completa y reemplaza la línea <code>const CODE_HASH = ...</code>
+          dentro de <code>js/admin-auth.js</code>:
+        </p>
+        <textarea id="result-text" readonly style="width:100%;min-height:64px;font-family:monospace;font-size:12.5px;"></textarea>
+        <button class="btn secondary small" id="copy-btn" style="margin-top:8px;">Copiar línea</button>
+        <p id="copy-ok" class="hidden" style="font-size:12px;color:var(--lime-dark);margin-top:6px;">¡Copiado!</p>
+      </div>
+
+      <div class="warn" style="margin-top:18px;background:#fff7e0;border:1px solid #f4e2a0;border-radius:var(--radius-sm);padding:10px 12px;font-size:11.5px;color:#7a5c00;">
+        Recuerda: este código es solo un filtro para visitas casuales, no un inicio de
+        sesión real. Compártelo únicamente con las personas que deban editar el torneo.
+      </div>
+    </div>
+    <p class="center muted" style="font-size:12px;margin-top:14px;"><a href="admin.html">← Volver al panel de administración</a></p>
+  </div>
+
+  <script>
+    async function sha256Hex(text) {
+      const enc = new TextEncoder().encode(text);
+      const buf = await crypto.subtle.digest("SHA-256", enc);
+      return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function generate() {
+      const val = document.getElementById("code-input").value;
+      if (!val) return;
+      const hash = await sha256Hex(val);
+      document.getElementById("result-text").value =
+        `  const CODE_HASH = "${hash}"; // actualizado ${new Date().toISOString().slice(0, 10)}`;
+      document.getElementById("result").classList.remove("hidden");
+      document.getElementById("copy-ok").classList.add("hidden");
+    }
+
+    document.getElementById("gen-btn").addEventListener("click", generate);
+    document.getElementById("code-input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") generate();
+    });
+    document.getElementById("copy-btn").addEventListener("click", () => {
+      const ta = document.getElementById("result-text");
+      ta.select();
+      navigator.clipboard.writeText(ta.value).then(() => {
+        document.getElementById("copy-ok").classList.remove("hidden");
+      });
+    });
+  </script>
+</body>
+</html>

@@ -48,15 +48,35 @@ Por eso el flujo es:
 4. GitHub Pages republica el sitio automáticamente y todos los visitantes
    ven los datos actualizados.
 
-El control de quién puede modificar los datos lo da **GitHub**: solo las
-cuentas con permiso de escritura sobre el repositorio pueden publicar
-cambios (push). El panel `admin.html` no tiene usuario/contraseña propio
-—como se decidió— porque una contraseña en el navegador no impediría que
-alguien editara los datos localmente; la seguridad real está en quién puede
-hacer push al repositorio. Si quieres, puedes además evitar enlazar
-`admin.html` desde cualquier menú público (ya no está enlazado desde
-`index.html` salvo el enlace "Administración" visible — puedes quitarlo si
-prefieres que nadie lo note).
+El control real de quién puede **modificar los datos de todos** lo sigue
+dando **GitHub**: solo las cuentas con permiso de escritura sobre el
+repositorio pueden publicar cambios (push). Aunque alguien entre al panel,
+solo puede alterar el borrador en su propio navegador — nunca lo que ven
+los demás visitantes.
+
+### Candado de acceso al panel
+
+Como capa adicional, `admin.html` pide un **código de acceso** antes de
+mostrarse (ver `js/admin-auth.js`). Es importante entender qué protege y
+qué no:
+
+- **Qué resuelve:** que un visitante cualquiera no vea ni toque la
+  interfaz de edición por accidente o curiosidad.
+- **Qué NO resuelve:** no es un inicio de sesión real. El código se
+  verifica con JavaScript dentro del propio navegador, así que alguien
+  dispuesto a mirar el código fuente o las herramientas de desarrollador
+  podría encontrarlo o evitarlo. No lo uses para proteger información
+  verdaderamente sensible.
+
+**Cambiar el código:** abre `generate-code.html` en el navegador, escribe
+el nuevo código y pega la línea que te da en `js/admin-auth.js`
+(reemplazando la línea `const CODE_HASH = ...`). El código de fábrica es
+`torneo5-2026` — cámbialo antes de publicar el sitio.
+
+El botón **"🔒 Bloquear"** en la parte superior del panel cierra el acceso
+en ese navegador (útil en una computadora compartida); por defecto también
+se bloquea solo al cerrar la pestaña, porque el desbloqueo se guarda por
+sesión del navegador.
 
 ## Publicar en GitHub Pages
 
