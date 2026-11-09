@@ -1,0 +1,221 @@
+{
+  "activeTournamentId": "TOR-001",
+  "tournaments": [
+    {
+      "id": "TOR-001",
+      "name": "Campeonato de Fútbol 5 - Edición 2026",
+      "status": "in_progress",
+      "createdAt": "2026-11-01",
+      "settings": {
+        "matchDuration": {
+          "firstHalf": 30,
+          "secondHalf": 30,
+          "halftimeBreak": 5,
+          "editable": true
+        },
+        "roster": {
+          "min": 5,
+          "max": 10,
+          "onField": 6,
+          "goalkeepersOnField": 1,
+          "fieldPlayers": 5,
+          "substitutes": 4
+        },
+        "substitutions": {
+          "unlimited": true,
+          "trackHistory": true
+        },
+        "publicAccess": true,
+        "format": "groups",
+        "knockout": {
+          "stagesFromGroups": ["quarterfinal", "semifinal", "final"],
+          "advancePerGroup": 2
+        }
+      },
+      "categories": [
+        { "id": "INF", "name": "Infantil", "minAge": 0, "maxAge": 12 },
+        { "id": "JUV", "name": "Juvenil", "minAge": 13, "maxAge": 19 },
+        { "id": "ADU", "name": "Adulto", "minAge": 20, "maxAge": null }
+      ],
+      "divisions": ["Masculina", "Femenina"],
+      "teams": [
+        {
+          "id": "EQ-001",
+          "name": "Fénix FC",
+          "category": "JUV",
+          "division": "Masculina",
+          "colors": { "primary": "#1b7a3d", "secondary": "#ffffff" },
+          "status": "active",
+          "players": [
+            { "id": "J-001", "name": "Carlos", "number": 1, "isGoalkeeper": true, "role": "titular" },
+            { "id": "J-002", "name": "Miguel", "number": 7, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-003", "name": "José", "number": 10, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-004", "name": "Daniel", "number": 9, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-005", "name": "Andrés", "number": 4, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-006", "name": "Kevin", "number": 11, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-007", "name": "Luis", "number": 8, "isGoalkeeper": false, "role": "suplente" },
+            { "id": "J-008", "name": "Óscar", "number": 5, "isGoalkeeper": false, "role": "suplente" }
+          ]
+        },
+        {
+          "id": "EQ-002",
+          "name": "Leones FC",
+          "category": "JUV",
+          "division": "Masculina",
+          "colors": { "primary": "#c0392b", "secondary": "#111111" },
+          "status": "active",
+          "players": [
+            { "id": "J-101", "name": "Pedro", "number": 1, "isGoalkeeper": true, "role": "titular" },
+            { "id": "J-102", "name": "Mario", "number": 6, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-103", "name": "Diego", "number": 7, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-104", "name": "Franklin", "number": 9, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-105", "name": "Esteban", "number": 3, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-106", "name": "Walter", "number": 2, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-107", "name": "Ricardo", "number": 14, "isGoalkeeper": false, "role": "suplente" }
+          ]
+        },
+        {
+          "id": "EQ-003",
+          "name": "Águilas Doradas",
+          "category": "JUV",
+          "division": "Masculina",
+          "colors": { "primary": "#f1c40f", "secondary": "#1b2631" },
+          "status": "active",
+          "players": [
+            { "id": "J-201", "name": "Henry", "number": 1, "isGoalkeeper": true, "role": "titular" },
+            { "id": "J-202", "name": "Edwin", "number": 5, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-203", "name": "Saúl", "number": 10, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-204", "name": "Fernando", "number": 11, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-205", "name": "Jonathan", "number": 8, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-206", "name": "Moisés", "number": 4, "isGoalkeeper": false, "role": "titular" }
+          ]
+        },
+        {
+          "id": "EQ-004",
+          "name": "Tigres JR",
+          "category": "JUV",
+          "division": "Masculina",
+          "colors": { "primary": "#e67e22", "secondary": "#1b2631" },
+          "status": "active",
+          "players": [
+            { "id": "J-301", "name": "Alex", "number": 1, "isGoalkeeper": true, "role": "titular" },
+            { "id": "J-302", "name": "Bryan", "number": 6, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-303", "name": "Nelson", "number": 7, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-304", "name": "Gerardo", "number": 9, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-305", "name": "Iván", "number": 3, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-306", "name": "Marvin", "number": 2, "isGoalkeeper": false, "role": "titular" }
+          ]
+        },
+        {
+          "id": "EQ-005",
+          "name": "Estrellas FA",
+          "category": "INF",
+          "division": "Femenina",
+          "colors": { "primary": "#9b59b6", "secondary": "#ffffff" },
+          "status": "active",
+          "players": [
+            { "id": "J-401", "name": "Valeria", "number": 1, "isGoalkeeper": true, "role": "titular" },
+            { "id": "J-402", "name": "Camila", "number": 10, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-403", "name": "Sofía", "number": 7, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-404", "name": "Ana", "number": 9, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-405", "name": "María", "number": 5, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-406", "name": "Emily", "number": 8, "isGoalkeeper": false, "role": "titular" }
+          ]
+        },
+        {
+          "id": "EQ-006",
+          "name": "Rayos FA",
+          "category": "INF",
+          "division": "Femenina",
+          "colors": { "primary": "#2980b9", "secondary": "#ffffff" },
+          "status": "active",
+          "players": [
+            { "id": "J-501", "name": "Daniela", "number": 1, "isGoalkeeper": true, "role": "titular" },
+            { "id": "J-502", "name": "Fátima", "number": 4, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-503", "name": "Paola", "number": 11, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-504", "name": "Gabriela", "number": 9, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-505", "name": "Ivonne", "number": 6, "isGoalkeeper": false, "role": "titular" },
+            { "id": "J-506", "name": "Pamela", "number": 3, "isGoalkeeper": false, "role": "titular" }
+          ]
+        }
+      ],
+      "groups": [
+        { "id": "G-JUV-M-A", "category": "JUV", "division": "Masculina", "name": "Grupo A", "teamIds": ["EQ-001", "EQ-002", "EQ-003", "EQ-004"] },
+        { "id": "G-INF-F-A", "category": "INF", "division": "Femenina", "name": "Grupo A", "teamIds": ["EQ-005", "EQ-006"] }
+      ],
+      "matches": [
+        {
+          "id": "PAR-001",
+          "stage": "group",
+          "groupId": "G-JUV-M-A",
+          "homeTeamId": "EQ-001",
+          "awayTeamId": "EQ-002",
+          "date": "2026-11-15",
+          "time": "16:00",
+          "duration": { "firstHalf": 30, "secondHalf": 30 },
+          "status": "finished",
+          "score": {
+            "home": { "firstHalf": 2, "secondHalf": 1, "total": 3 },
+            "away": { "firstHalf": 1, "secondHalf": 1, "total": 2 }
+          },
+          "incidents": [
+            { "minute": 5, "type": "goal", "teamId": "EQ-001", "playerId": "J-001", "text": "" },
+            { "minute": 12, "type": "goal", "teamId": "EQ-001", "playerId": "J-002", "text": "" },
+            { "minute": 23, "type": "goal", "teamId": "EQ-001", "playerId": "J-004", "text": "" },
+            { "minute": 28, "type": "yellow_card", "teamId": "EQ-001", "playerId": "J-006", "text": "Falta sobre el arquero" },
+            { "minute": 40, "type": "goal", "teamId": "EQ-002", "playerId": "J-104", "text": "" },
+            { "minute": 55, "type": "goal", "teamId": "EQ-002", "playerId": "J-103", "text": "" },
+            { "minute": 60, "type": "note", "teamId": null, "playerId": null, "text": "Partido finalizado normalmente." }
+          ],
+          "substitutions": [
+            { "minute": 20, "teamId": "EQ-001", "playerOutId": "J-005", "playerInId": "J-007" }
+          ],
+          "notes": ""
+        },
+        {
+          "id": "PAR-002",
+          "stage": "group",
+          "groupId": "G-JUV-M-A",
+          "homeTeamId": "EQ-003",
+          "awayTeamId": "EQ-004",
+          "date": "2026-11-16",
+          "time": "17:00",
+          "duration": { "firstHalf": 30, "secondHalf": 30 },
+          "status": "scheduled",
+          "score": {
+            "home": { "firstHalf": 0, "secondHalf": 0, "total": 0 },
+            "away": { "firstHalf": 0, "secondHalf": 0, "total": 0 }
+          },
+          "incidents": [],
+          "substitutions": [],
+          "notes": ""
+        },
+        {
+          "id": "PAR-003",
+          "stage": "group",
+          "groupId": "G-INF-F-A",
+          "homeTeamId": "EQ-005",
+          "awayTeamId": "EQ-006",
+          "date": "2026-11-16",
+          "time": "15:00",
+          "duration": { "firstHalf": 30, "secondHalf": 30 },
+          "status": "scheduled",
+          "score": {
+            "home": { "firstHalf": 0, "secondHalf": 0, "total": 0 },
+            "away": { "firstHalf": 0, "secondHalf": 0, "total": 0 }
+          },
+          "incidents": [],
+          "substitutions": [],
+          "notes": ""
+        }
+      ],
+      "bracket": {
+        "quarterfinals": [],
+        "semifinals": [],
+        "final": null,
+        "champion": null,
+        "runnerUp": null
+      }
+    }
+  ]
+}

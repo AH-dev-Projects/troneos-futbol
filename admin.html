@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Administración — Torneo 5</title>
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div class="export-bar">
+    <span id="draft-status">Cargando datos…</span>
+    <div class="toolbar">
+      <button class="btn small secondary" id="btn-discard-draft">Descartar borrador</button>
+      <button class="btn small lime" id="btn-export">⬇ Exportar JSON actualizado</button>
+    </div>
+  </div>
+
+  <header class="topbar admin-topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">T5</div>
+        <div class="brand-text">
+          <h1>Panel de administración</h1>
+          <p id="tournament-name">Torneo 5</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a href="index.html" class="btn-ghost">← Ver sitio público</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button data-section="torneo" class="active">Torneo</button>
+    <button data-section="equipos">Equipos</button>
+    <button data-section="grupos">Grupos</button>
+    <button data-section="calendario">Partidos</button>
+    <button data-section="eliminatorias">Eliminatorias</button>
+    <button data-section="datos">Importar / Exportar</button>
+  </nav>
+
+  <main>
+
+    <!-- ============ TORNEO ============ -->
+    <section class="section active" id="section-torneo">
+      <div class="panel">
+        <h3>Torneos</h3>
+        <ul class="admin-list" id="tournament-list"></ul>
+        <div style="margin-top:10px;">
+          <button class="btn secondary small" id="btn-new-tournament">+ Nuevo torneo</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Datos generales</h3>
+        <div class="form-grid">
+          <div class="full">
+            <label>Nombre del torneo</label>
+            <input type="text" id="t-name" />
+          </div>
+          <div>
+            <label>Estado</label>
+            <select id="t-status">
+              <option value="registration">Inscripción abierta</option>
+              <option value="in_progress">En curso</option>
+              <option value="finished">Finalizado</option>
+            </select>
+          </div>
+          <div>
+            <label>Consulta pública</label>
+            <select id="t-public">
+              <option value="true">Pública</option>
+              <option value="false">Privada</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Duración y reglas del partido</h3>
+        <div class="form-grid">
+          <div><label>Primer tiempo (min)</label><input type="number" id="t-first-half" min="1" /></div>
+          <div><label>Segundo tiempo (min)</label><input type="number" id="t-second-half" min="1" /></div>
+          <div><label>Descanso (min)</label><input type="number" id="t-halftime" min="0" /></div>
+          <div><label>Máximo de jugadores por equipo</label><input type="number" id="t-max-players" min="5" max="30" /></div>
+          <div><label>Clasifican por grupo (eliminatoria)</label><input type="number" id="t-advance" min="1" max="4" /></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Categorías <span class="count" id="cat-count"></span></h3>
+        <ul class="admin-list" id="categories-list"></ul>
+        <div class="form-grid" style="margin-top:12px;">
+          <div><label>ID (corto)</label><input type="text" id="new-cat-id" placeholder="Ej. INF" /></div>
+          <div><label>Nombre</label><input type="text" id="new-cat-name" placeholder="Ej. Infantil" /></div>
+          <div><label>Edad mínima</label><input type="number" id="new-cat-min" value="0" /></div>
+          <div><label>Edad máxima</label><input type="number" id="new-cat-max" placeholder="vacío = sin límite" /></div>
+        </div>
+        <div style="margin-top:10px;"><button class="btn secondary small" id="btn-add-category">+ Agregar categoría</button></div>
+      </div>
+    </section>
+
+    <!-- ============ EQUIPOS ============ -->
+    <section class="section" id="section-equipos">
+      <div class="section-head">
+        <h2>Equipos</h2>
+        <div class="toolbar">
+          <select id="filter-category-equipos"></select>
+          <select id="filter-division-equipos"></select>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Agregar equipo</h3>
+        <div class="form-grid">
+          <div><label>Nombre del equipo</label><input type="text" id="new-team-name" /></div>
+          <div><label>Categoría</label><select id="new-team-category"></select></div>
+          <div><label>División</label><select id="new-team-division"></select></div>
+          <div><label>Color principal</label><div class="inline-color"><input type="color" id="new-team-color1" value="#1b7a3d" /></div></div>
+          <div><label>Color secundario</label><div class="inline-color"><input type="color" id="new-team-color2" value="#ffffff" /></div></div>
+        </div>
+        <div style="margin-top:10px;"><button class="btn lime small" id="btn-add-team">+ Crear equipo</button></div>
+      </div>
+
+      <div id="equipos-admin-list"></div>
+    </section>
+
+    <!-- ============ GRUPOS ============ -->
+    <section class="section" id="section-grupos">
+      <div class="section-head">
+        <h2>Grupos</h2>
+        <div class="toolbar">
+          <select id="filter-category-grupos"></select>
+          <select id="filter-division-grupos"></select>
+        </div>
+      </div>
+      <div id="grupos-admin-container"></div>
+    </section>
+
+    <!-- ============ PARTIDOS ============ -->
+    <section class="section" id="section-calendario">
+      <div class="section-head">
+        <h2>Partidos</h2>
+        <div class="toolbar">
+          <select id="filter-category-calendario"></select>
+          <select id="filter-division-calendario"></select>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Programar nuevo partido</h3>
+        <div class="form-grid">
+          <div><label>Grupo (opcional)</label><select id="new-match-group"><option value="">Sin grupo / eliminatoria</option></select></div>
+          <div><label>Equipo local</label><select id="new-match-home"></select></div>
+          <div><label>Equipo visitante</label><select id="new-match-away"></select></div>
+          <div><label>Fecha</label><input type="date" id="new-match-date" /></div>
+          <div><label>Hora</label><input type="time" id="new-match-time" /></div>
+        </div>
+        <div style="margin-top:10px;"><button class="btn lime small" id="btn-add-match">+ Programar partido</button></div>
+      </div>
+
+      <ul class="admin-list" id="matches-admin-list"></ul>
+    </section>
+
+    <!-- ============ ELIMINATORIAS ============ -->
+    <section class="section" id="section-eliminatorias">
+      <div class="section-head">
+        <h2>Eliminatorias</h2>
+        <div class="toolbar">
+          <select id="filter-category-elim"></select>
+          <select id="filter-division-elim"></select>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="toolbar">
+          <button class="btn secondary small" id="btn-gen-bracket">Generar cruces iniciales</button>
+          <button class="btn secondary small" id="btn-advance-bracket">Avanzar a la siguiente ronda</button>
+        </div>
+        <p class="muted" id="bracket-msg" style="font-size:12.5px;margin-top:8px;"></p>
+      </div>
+      <div id="eliminatorias-admin-container"></div>
+    </section>
+
+    <!-- ============ IMPORTAR / EXPORTAR ============ -->
+    <section class="section" id="section-datos">
+      <div class="panel">
+        <h3>Exportar</h3>
+        <p class="muted" style="font-size:13px;">Descarga el archivo <code>tournaments.json</code> actualizado con todos tus cambios. Reemplaza el archivo <code>data/tournaments.json</code> de tu repositorio en GitHub y haz commit/push para publicar los cambios (solo cuentas con permiso de escritura pueden hacerlo).</p>
+        <button class="btn lime" id="btn-export-2">⬇ Descargar tournaments.json</button>
+      </div>
+      <div class="panel">
+        <h3>Importar</h3>
+        <p class="muted" style="font-size:13px;">Carga un archivo <code>tournaments.json</code> (por ejemplo, el publicado actualmente en tu repositorio) para continuar editando desde ahí.</p>
+        <input type="file" id="import-file" accept="application/json" />
+      </div>
+      <div class="panel">
+        <h3>Borrador local</h3>
+        <p class="muted" style="font-size:13px;">Tus cambios se guardan automáticamente en este navegador mientras trabajas, para que no se pierdan si recargas la página. No se publican hasta que exportes el JSON y lo subas a GitHub.</p>
+        <button class="btn danger small" id="btn-discard-draft-2">Descartar borrador y recargar datos publicados</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal de edición de partido -->
+  <div class="modal-backdrop hidden" id="match-modal-backdrop">
+    <div class="modal">
+      <button class="modal-close" id="match-modal-close">✕</button>
+      <div id="match-modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/standings.js"></script>
+  <script src="js/bracket.js"></script>
+  <script src="js/teams.js"></script>
+  <script src="js/matches.js"></script>
+  <script src="js/groups.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
