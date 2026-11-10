@@ -29,6 +29,8 @@ torneo-5/
 │   └── admin.js                     lógica del panel de administración
 ├── data/
 │   └── tournaments.json  datos del torneo (equipos, jugadores, partidos…)
+├── img/
+│   └── logo.png           logo del badge (reemplázalo por otro con el mismo nombre)
 └── README.md
 ```
 
